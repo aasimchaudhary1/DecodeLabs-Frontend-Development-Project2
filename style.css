@@ -417,7 +417,8 @@ nav ul li a:hover{
     color:#666;
 }
 .reviews{
-    padding:60px 20px;
+    padding:60px 50px;
+    
     background:#fbf5d2;
     text-align:center;
 }
@@ -428,14 +429,18 @@ nav ul li a:hover{
 }
 .review-slider{
     overflow:hidden;
-    max-width:1000px;
+    max-width:900px;
     margin:auto;
 }
 
 .review-track{
     display:flex;
-    gap:20px;
+    gap:5px;
     transition:0.5s;
+    margin-right: -5%;
+    padding-left: 10px;
+    width:-5%;
+   
 }
 
 /* CARD */
@@ -484,7 +489,94 @@ nav ul li a:hover{
     font-size:14px;
 }
 
+/* ===== FOOTER ===== */
+.footer{
+    background: linear-gradient(to right, #2c2c2c, #1a1a1a);
+    color:#ddd;
+    padding:50px 20px 20px;
+}
 
+/* CONTAINER */
+.footer-container{
+    max-width:1100px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    gap:40px;
+    flex-wrap:wrap;
+}
+
+/* COLUMN */
+.footer-col{
+    flex:1;
+    min-width:200px;
+}
+
+/* HEADINGS */
+.footer-col h3{
+    color:white;
+    margin-bottom:15px;
+    position:relative;
+}
+
+/* LINE UNDER TITLE */
+.footer-col h3::after{
+    content:"";
+    display:block;
+    width:60px;
+    height:2px;
+    background:#aaa;
+    margin-top:8px;
+}
+
+/* LINKS */
+.footer-col ul{
+    list-style:none;
+}
+
+.footer-col ul li{
+    margin:8px 0;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.footer-col ul li:hover{
+    color:white;
+}
+
+/* SOCIAL ICONS */
+.socials{
+    display:flex;
+    gap:15px;
+    margin-top:10px;
+}
+
+.socials i{
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    background:#444;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.socials i:hover{
+    background:white;
+    color:black;
+}
+
+/* BOTTOM */
+.footer-bottom{
+    text-align:center;
+    border-top:1px solid #444;
+    margin-top:30px;
+    padding-top:15px;
+    font-size:14px;
+    color:#aaa;
+}
 /* ===== MOBILE ===== */
 @media (max-width:768px){
 
@@ -494,6 +586,18 @@ nav ul li a:hover{
     }
     .review-card{
         flex:0 0 calc((100% - 20px)/2);
+    }
+     .footer-container{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .footer-col h3::after{
+        margin:8px auto;
+    }
+
+    .socials{
+        justify-content:center;
     }
     /* hide menu initially */
     nav ul{

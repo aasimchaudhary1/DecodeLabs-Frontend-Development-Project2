@@ -110,7 +110,6 @@ window.addEventListener("resize", () => {
 
 // 👉 init
 window.addEventListener("load", updateSlider);
-
 const tracks = document.getElementById("reviewTrack");
 const cards = document.querySelectorAll(".review-card");
 
@@ -128,9 +127,10 @@ function slide(){
     index++;
     if(index > maxIndex) index = 0;
 
-    const width = document.querySelector(".review-slider").offsetWidth;
+    const cardWidth = cards[0].offsetWidth;   // 👈 FIXED
+    const gap = 20; // same as CSS
 
-    tracks.style.transform = `translateX(-${index * (width / visible)}px)`;
+    tracks.style.transform = `translateX(-${index * (cardWidth + gap)}px)`;
 }
 
 setInterval(slide, 3000);
