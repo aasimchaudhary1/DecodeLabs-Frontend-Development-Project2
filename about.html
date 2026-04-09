@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - Stylo</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<!-- ===== HEADER (SAME AS HOME) ===== -->
+<header>
+  <div class="container">
+
+    <div class="logo">STYLO</div>
+
+    <nav>
+      <ul id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="./about.html" class="active">About</a></li>
+        <li><a href="./shop.html">Shop</a></li>
+        <li><a href="./contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-icons">
+       <!-- ✅ FIXED CART -->
+  <a href="javascript:void(0)" id="open-cart" class="cart-icon">
+    <i class="fa-solid fa-cart-shopping"></i>
+  </a>
+
+      <div class="menu-toggle" id="menu-toggle">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+    </div>
+
+  </div>
+</header>
+<!-- ===== CART SIDEBAR ===== -->
+<div id="cart-sidebar">
+
+    <span id="close-cart">&times;</span>
+  
+    <h2>Your Cart</h2>
+  
+    <div id="cart-items"></div>
+  
+    <div class="cart-footer">
+      <h3>Total: $<span id="cart-total">0</span></h3>
+      <button class="btn" id="checkout-btn">Checkout</button>
+    </div>
+  
+  </div>
+  
+<!-- ===== HERO / BANNER ===== -->
+<section class="about-hero">
+  <h1>About Our Brand</h1>
+  <p>Style. Quality. Confidence.</p>
+</section>
+
+<!-- ===== ABOUT SECTION ===== -->
+<section class="about-page">
+
+  <div class="about-container">
+
+    <div class="about-text">
+      <h2>Who We Are</h2>
+      <p>
+        At Stylo, we believe fashion is more than just clothing — it's a way to express confidence and personality.
+        Our brand is dedicated to bringing modern, stylish, and high-quality fashion to everyone.
+      </p>
+
+      <p>
+        We carefully design each collection to ensure comfort, durability, and trend-forward aesthetics.
+        Whether you're dressing casually or making a statement, Stylo has you covered.
+      </p>
+    </div>
+
+    <div class="about-image">
+      <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1200" alt="Fashion">
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section class="features">
+  <h2>Why Choose Us?</h2>
+
+  <div class="features-container">
+
+    <div class="feature">
+      <i class="fa-solid fa-shirt"></i>
+      <h3>Premium Quality</h3>
+      <p>Only the best materials used.</p>
+    </div>
+
+    <div class="feature">
+      <i class="fa-solid fa-truck"></i>
+      <h3>Fast Delivery</h3>
+      <p>Quick & reliable shipping.</p>
+    </div>
+
+    <div class="feature">
+      <i class="fa-solid fa-heart"></i>
+      <h3>Customer Love</h3>
+      <p>Thousands of happy customers.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <div class="footer-col">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="./shop.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="./contact.html">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>Customer Service</h3>
+      <ul>
+        <li>FAQ</li>
+        <li>Shipping & Returns</li>
+        <li>Contact Us</li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>Follow Us</h3>
+      <div class="socials">
+        <i class="fa-brands fa-facebook-f"></i>
+        <i class="fa-brands fa-instagram"></i>
+        <i class="fa-brands fa-twitter"></i>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Stylo. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- ===== JS ===== -->
+<script src="script.js"></script>
+
+</body>
+</html>

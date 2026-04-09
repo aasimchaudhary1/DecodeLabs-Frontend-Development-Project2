@@ -1,136 +1,221 @@
+/* ================= MENU ================= */
 const toggle = document.getElementById("menu-toggle");
 const nav = document.getElementById("nav-links");
+const closeMenu = document.getElementById("close-menu");
 
-toggle.onclick = () => {
-  nav.classList.toggle("active");
-};
-window.addEventListener("resize", () => {
-    if (window.innerWidth > 768) {
-        nav.classList.remove("active");
-    }
-});
-const closeBtn = document.getElementById("close-menu");
-
-toggle.onclick = () => {
-    nav.classList.add("active");
-};
-
-closeBtn.onclick = () => {
-    nav.classList.remove("active");
-};
-
-let slides = document.querySelectorAll(".slide");
-let heroIndex = 0;
-
-
-function showSlide(){
-    slides.forEach(slide => slide.classList.remove("active"));
-
-    heroIndex++;
-    if(heroIndex >= slides.length){
-        heroIndex = 0;
-    }
-
-    slides[heroIndex].classList.add("active");
+if (toggle && nav) {
+  toggle.onclick = () => nav.classList.add("active");
 }
 
-setInterval(showSlide, 3000); // change every 3 sec
+if (closeMenu && nav) {
+  closeMenu.onclick = () => nav.classList.remove("active");
+}
+
+
+/* ================= CART ================= */
+const openCart = document.getElementById("open-cart");
+const cartSidebar = document.getElementById("cart-sidebar");
+const closeCart = document.getElementById("close-cart");
+
+if (openCart && cartSidebar) {
+  openCart.onclick = () => {
+    cartSidebar.classList.add("active");
+    loadCart();
+  };
+}
+
+if (closeCart && cartSidebar) {
+  closeCart.onclick = () => {
+    cartSidebar.classList.remove("active");
+  };
+}
+
+
+/* ================= LOAD CART ================= */
+function loadCart() {
+  const cartItems = document.getElementById("cart-items");
+  const totalEl = document.getElementById("cart-total");
+
+  if (!cartItems || !totalEl) return;
+
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  cartItems.innerHTML = "";
+  let total = 0;
+
+  cart.forEach((item, index) => {
+    total += item.price * item.qty;
+
+    cartItems.innerHTML += `
+      <div class="cart-item">
+        <img src="${item.img}" class="cart-img">
+        <div>
+          <h4>${item.name}</h4>
+          <p>$${item.price}</p>
+
+          <div class="qty-controls">
+            <button onclick="changeQty(${index}, -1)">-</button>
+            <span>${item.qty}</span>
+            <button onclick="changeQty(${index}, 1)">+</button>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+
+  totalEl.innerText = total;
+}
+
+
+/* ================= CHANGE QTY ================= */
+function changeQty(index, change) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  if (!cart[index]) return;
+
+  cart[index].qty += change;
+
+  if (cart[index].qty <= 0) {
+    cart.splice(index, 1);
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  loadCart();
+}
+
+
+/* ================= PRODUCT PAGE ================= */
+const addBtn = document.getElementById("add-to-cart");
+
+if (addBtn) {
+  const params = new URLSearchParams(window.location.search);
+
+  const product = {
+    name: params.get("name"),
+    price: Number(params.get("price")),
+    img: params.get("img"),
+    qty: 1
+  };
+
+  document.getElementById("product-name").innerText = product.name;
+  document.getElementById("product-price").innerText = "$" + product.price;
+  document.getElementById("product-img").src = product.img;
+
+  addBtn.onclick = () => {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    const existing = cart.find(item => item.name === product.name);
+
+    if (existing) {
+      existing.qty++;
+    } else {
+      cart.push(product);
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    alert("Added to cart ");
+    loadCart();
+  };
+}
+
+
+/* ================= CHECKOUT ================= */
+const checkoutBtn = document.getElementById("checkout-btn");
+
+if (checkoutBtn) {
+  checkoutBtn.onclick = () => {
+    alert("Order placed successfully ");
+    localStorage.removeItem("cart");
+    loadCart();
+  };
+}
+
+
+/* ================= FEATURE PRODUCT SLIDER ================= */
 const track = document.getElementById("track");
 const nextBtn = document.querySelector(".next");
 const prevBtn = document.querySelector(".prev");
 
-let index = 0;
-const totalCards = document.querySelectorAll(".product-card").length;
+if (track && nextBtn && prevBtn) {
 
-// 👉 detect visible cards based on screen
-function getVisible(){
+  let index = 0;
+  const cards = document.querySelectorAll(".product-card");
+
+  function getVisible() {
     if (window.innerWidth < 600) return 1;
     if (window.innerWidth < 900) return 2;
     if (window.innerWidth < 1200) return 3;
     return 4;
-}
+  }
 
-// 👉 get single card width (WITH GAP)
-function getCardWidth(){
-    const card = document.querySelector(".product-card");
-    const gap = 20; // same as CSS
-    return card.offsetWidth + gap;
-}
+  function getCardWidth() {
+    const card = cards[0];
+    return card.offsetWidth + 20;
+  }
 
-// 👉 update slider position
-function updateSlider(){
+  function updateSlider() {
     const visible = getVisible();
-    const maxIndex = totalCards - visible;
+    const maxIndex = Math.max(cards.length - visible, 0);
 
-    const moveX = index * getCardWidth();
+    if (index > maxIndex) index = maxIndex;
 
-    track.style.transform = `translateX(-${moveX}px)`;
+    track.style.transform = `translateX(-${index * getCardWidth()}px)`;
 
-    // ✅ FIXED BUTTON LOGIC
-    if(index >= maxIndex){
-        nextBtn.style.display = "none";
-    } else {
-        nextBtn.style.display = "block";
-    }
+    nextBtn.style.display = index >= maxIndex ? "none" : "block";
+    prevBtn.style.display = index <= 0 ? "none" : "block";
+  }
 
-    if(index <= 0){
-        prevBtn.style.display = "none";
-    } else {
-        prevBtn.style.display = "block";
-    }
-}
-
-// 👉 next
-function nextSlide(){
-    const visible = getVisible();
-    const maxIndex = totalCards - visible;
-
+  nextBtn.onclick = () => {
     index++;
-    if(index > maxIndex) index = maxIndex;
-
     updateSlider();
-}
+  };
 
-// 👉 prev
-function prevSlide(){
+  prevBtn.onclick = () => {
     index--;
-    if(index < 0) index = 0;
-
+    if (index < 0) index = 0;
     updateSlider();
-}
+  };
 
-nextBtn.onclick = nextSlide;
-prevBtn.onclick = prevSlide;
-
-// 👉 reset on resize
-window.addEventListener("resize", () => {
+  window.addEventListener("resize", () => {
     index = 0;
     updateSlider();
-});
+  });
 
-// 👉 init
-window.addEventListener("load", updateSlider);
-const tracks = document.getElementById("reviewTrack");
-const cards = document.querySelectorAll(".review-card");
-
-
-
-function getVisible(){
-    return window.innerWidth < 768 ? 1 : 2;
+  window.addEventListener("load", updateSlider);
 }
 
-function slide(){
-    const visible = getVisible();
-    const total = cards.length;
-    const maxIndex = total - visible;
 
-    index++;
-    if(index > maxIndex) index = 0;
+/* ================= REVIEW SLIDER ================= */
+const reviewTrack = document.getElementById("reviewTrack");
+const reviewCards = document.querySelectorAll(".review-card");
 
-    const cardWidth = cards[0].offsetWidth;   // 👈 FIXED
-    const gap = 20; // same as CSS
+if (reviewTrack && reviewCards.length > 0) {
 
-    tracks.style.transform = `translateX(-${index * (cardWidth + gap)}px)`;
+  let reviewIndex = 0;
+
+  function getReviewVisible() {
+    if (window.innerWidth <= 430) return 1;
+    if (window.innerWidth <= 1023) return 2;
+    return 3;
+  }
+
+  function slideReviews() {
+    const visible = getReviewVisible();
+    const maxIndex = reviewCards.length - visible;
+
+    reviewIndex++;
+    if (reviewIndex > maxIndex) reviewIndex = 0;
+
+    const width = reviewCards[0].offsetWidth + 20;
+
+    reviewTrack.style.transform =
+      `translateX(-${reviewIndex * width}px)`;
+  }
+
+  setInterval(slideReviews, 3000);
 }
 
-setInterval(slide, 3000);
+
+/* ================= AUTO LOAD ================= */
+window.addEventListener("load", loadCart);

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product - Stylo</title>
+
+<link rel="stylesheet" href="style.css">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="container">
+
+    <div class="logo">STYLO</div>
+
+    <nav>
+      <ul id="nav-links">
+        <span id="close-menu" class="close-menu">&times;</span>
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="./about.html">About</a></li>
+        <li><a href="./shop.html">Shop</a></li>
+        <li><a href="./contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-icons">
+      <a href="#" id="open-cart" class="cart-icon">
+        <i class="fa-solid fa-cart-shopping"></i>
+      </a>
+
+      <div class="menu-toggle" id="menu-toggle">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+<!-- ===== CART SIDEBAR ===== -->
+<div id="cart-sidebar">
+  <span id="close-cart">&times;</span>
+
+  <h2>Your Cart</h2>
+
+  <div id="cart-items"></div>
+
+  <div class="cart-footer">
+    <h3>Total: $<span id="cart-total">0</span></h3>
+    <button class="btn" id="checkout-btn">Checkout</button>
+  </div>
+</div>
+
+<!-- ===== PRODUCT ===== -->
+<section class="product-page">
+  <div class="product-detail">
+
+    <img id="product-img" src="" alt="Product">
+
+    <div class="product-info">
+      <h2 id="product-name"></h2>
+      <p id="product-price"></p>
+
+      <p class="desc">
+        High-quality stylish product designed for comfort and modern look.
+      </p>
+
+      <button class="btn" id="add-to-cart">Add to Cart</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <div class="footer-col">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="./shop.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="./contact.html">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>Customer Service</h3>
+      <ul>
+        <li>FAQ</li>
+        <li>Shipping & Returns</li>
+        <li>Contact Us</li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>Follow Us</h3>
+      <div class="socials">
+        <i class="fa-brands fa-facebook-f"></i>
+        <i class="fa-brands fa-instagram"></i>
+        <i class="fa-brands fa-twitter"></i>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Stylo. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- ===== SCRIPT ===== -->
+<script>
+/* ================= LOAD PRODUCT ================= */
+const params = new URLSearchParams(window.location.search);
+
+const product = {
+  name: params.get("name") || "Product",
+  price: Number(params.get("price")) || 0,
+  img: params.get("img") || "",
+  qty: 1
+};
+
+document.getElementById("product-name").innerText = product.name;
+document.getElementById("product-price").innerText = "$" + product.price;
+document.getElementById("product-img").src = product.img;
+
+/* ================= ADD TO CART ================= */
+document.getElementById("add-to-cart").onclick = () => {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  const existing = cart.find(item => item.name === product.name);
+
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push(product);
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  alert("Added to cart ✅");
+  loadCart();
+};
+
+/* ================= CART ================= */
+const cartSidebar = document.getElementById("cart-sidebar");
+
+document.getElementById("open-cart").onclick = () => {
+  cartSidebar.classList.add("active");
+  loadCart();
+};
+
+document.getElementById("close-cart").onclick = () => {
+  cartSidebar.classList.remove("active");
+};
+
+/* ================= LOAD CART ================= */
+function loadCart() {
+  const cartItems = document.getElementById("cart-items");
+  const totalEl = document.getElementById("cart-total");
+
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  cartItems.innerHTML = "";
+  let total = 0;
+
+  cart.forEach((item, index) => {
+    total += item.price * item.qty;
+
+    cartItems.innerHTML += `
+      <div class="cart-item">
+        <img src="${item.img}" class="cart-img">
+        <div class="cart-info">
+          <h4>${item.name}</h4>
+          <p>$${item.price}</p>
+
+          <div class="qty-controls">
+            <button onclick="changeQty(${index}, -1)">-</button>
+            <span>${item.qty}</span>
+            <button onclick="changeQty(${index}, 1)">+</button>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+
+  totalEl.innerText = total;
+}
+
+/* ================= CHANGE QTY ================= */
+function changeQty(index, change) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  cart[index].qty += change;
+
+  if (cart[index].qty <= 0) {
+    cart.splice(index, 1);
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  loadCart();
+}
+
+/* ================= CHECKOUT ================= */
+document.getElementById("checkout-btn").onclick = () => {
+  alert("Order placed successfully ✅");
+  localStorage.removeItem("cart");
+  loadCart();
+};
+
+/* ================= MENU ================= */
+const toggle = document.getElementById("menu-toggle");
+const nav = document.getElementById("nav-links");
+const closeBtn = document.getElementById("close-menu");
+
+if(toggle) toggle.onclick = () => nav.classList.add("active");
+if(closeBtn) closeBtn.onclick = () => nav.classList.remove("active");
+</script>
+
+</body>
+</html>

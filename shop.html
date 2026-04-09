@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop - Stylo</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="container">
+
+    <div class="logo">STYLO</div>
+
+    <nav>
+      <ul id="nav-links">
+        <span id="close-menu" class="close-menu">&times;</span>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="shop.html" class="active">Shop</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-icons">
+      <!-- ✅ CART BUTTON -->
+      <a href="#" id="open-cart" class="cart-icon">
+        <i class="fa-solid fa-cart-shopping"></i>
+      </a>
+
+      <!-- MENU -->
+      <div class="menu-toggle" id="menu-toggle">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+<!-- ===== CART SIDEBAR ===== -->
+<div id="cart-sidebar">
+
+  <span id="close-cart">&times;</span>
+
+  <h2>Your Cart</h2>
+
+  <div id="cart-items"></div>
+
+  <div class="cart-footer">
+    <h3>Total: $<span id="cart-total">0</span></h3>
+    <button class="btn" id="checkout-btn">Checkout</button>
+  </div>
+
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="shop-hero">
+  <h1>Shop Collection</h1>
+  <p>Browse All Products</p>
+</section>
+
+<!-- ===== PRODUCTS GRID ===== -->
+<section class="shop-products">
+
+  <div class="products-grid">
+
+    <!-- PRODUCT -->
+    <div class="product-card">
+      <img src="assets/alora-griffiths-KKZmUQjTO2E-unsplash.jpg">
+      <h3>Classic Denim Jacket</h3>
+      <p class="price">$79</p>
+      <a href="product.html?name=Classic%20Denim%20Jacket&price=79&img=assets/alora-griffiths-KKZmUQjTO2E-unsplash.jpg" class="btn">View Product</a>
+    </div>
+
+    <div class="product-card">
+      <img src="assets/alex-roosso-jpvuH86iMYw-unsplash.jpg">
+      <h3>Elegant Beige Dress</h3>
+      <p class="price">$79</p>
+      <a href="product.html?name=Elegant Beige Dress&price=79&img=assets/alex-roosso-jpvuH86iMYw-unsplash.jpg" class="btn">View Product</a>
+    </div>
+
+    <div class="product-card">
+      <img src="assets/chris-lynch-z56-3HeECRk-unsplash.jpg">
+      <h3>Streetwear Hoodie</h3>
+      <p class="price">$79</p>
+      <a href="product.html?name=Streetwear Hoodie&price=79&img=assets/chris-lynch-z56-3HeECRk-unsplash.jpg" class="btn">View Product</a>
+    </div>
+
+    <div class="product-card">
+      <img src="assets/mostafa-mahmoudi-3OZr-hLbsq0-unsplash.jpg">
+      <h3>Leather Boots</h3>
+      <p class="price">$79</p>
+      <a href="product.html?name=Leather Boots&price=79&img=assets/mostafa-mahmoudi-3OZr-hLbsq0-unsplash.jpg" class="btn">View Product</a>
+    </div>
+
+    <div class="product-card">
+      <img src="assets/umar-asif-f3qYumONWGU-unsplash.jpg">
+      <h3>Casual T-Shirt</h3>
+      <p class="price">$49</p>
+      <a href="product.html?name=Casual T-Shirt&price=49&img=assets/umar-asif-f3qYumONWGU-unsplash.jpg" class="btn">View Product</a>
+    </div>
+
+    <div class="product-card">
+      <img src="assets/asif-azr-c7SlXuUILWw-unsplash.jpg">
+      <h3>Summer Shirt</h3>
+      <p class="price">$59</p>
+      <a href="product.html?name=Summer Shirt&price=59&img=assets/asif-azr-c7SlXuUILWw-unsplash.jpg" class="btn">View Product</a>
+    </div>
+
+    <div class="product-card">
+      <img src="assets/kamyar-dehghan-KFUYFPDjjP8-unsplash.jpg">
+      <h3>Formal Blazer</h3>
+      <p class="price">$99</p>
+      <a href="product.html?name=Formal Blazer&price=99&img=assets/kamyar-dehghan-KFUYFPDjjP8-unsplash.jpg" class="btn">View Product</a>
+    </div>
+
+    <div class="product-card">
+      <img src="assets/apostolos-vamvouras-QvCGcsIwi9g-unsplash.jpg">
+      <h3>Stylish Sneakers</h3>
+      <p class="price">$89</p>
+      <a href="product.html?name=Stylish Sneakers&price=89&img=assets/apostolos-vamvouras-QvCGcsIwi9g-unsplash.jpg" class="btn">View Product</a>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <div class="footer-col">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>Customer Service</h3>
+      <ul>
+        <li>FAQ</li>
+        <li>Shipping & Returns</li>
+        <li>Contact Us</li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>Follow Us</h3>
+      <div class="socials">
+        <i class="fa-brands fa-facebook-f"></i>
+        <i class="fa-brands fa-instagram"></i>
+        <i class="fa-brands fa-twitter"></i>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Stylo. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
