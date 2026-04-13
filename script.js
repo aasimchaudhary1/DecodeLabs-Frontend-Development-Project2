@@ -219,3 +219,20 @@ if (reviewTrack && reviewCards.length > 0) {
 
 /* ================= AUTO LOAD ================= */
 window.addEventListener("load", loadCart);
+/* ================= HERO SLIDESHOW ================= */
+const slides = document.querySelectorAll(".slide");
+
+if (slides.length > 0) {
+  let current = 0;
+
+  function showSlides() {
+    slides.forEach(slide => slide.classList.remove("active"));
+
+    slides[current].classList.add("active");
+
+    current++;
+    if (current >= slides.length) current = 0;
+  }
+
+  setInterval(showSlides, 3000); // change every 3 seconds
+}
