@@ -1,3 +1,4 @@
+## Synet-task2-responsivelandingpage-javariaasif
 ##  Project Overview
 This project was initially developed as a **responsive landing page** using HTML, CSS, and JavaScript as part of an internship task. The goal was to create a clean, modern, and mobile-friendly layout that works seamlessly across different screen sizes.
 
