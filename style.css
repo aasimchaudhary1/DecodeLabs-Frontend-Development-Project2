@@ -244,8 +244,8 @@ nav ul li a:hover{
     
     padding:15px;
     box-sizing:border-box;
-    border-radius:15px;   /* 👈 rounded card */
-    overflow:hidden;      /* 👈 VERY IMPORTANT (keeps image inside rounded corners) */
+    border-radius:15px;   /*  rounded card */
+    overflow:hidden;      /*  VERY IMPORTANT (keeps image inside rounded corners) */
     background:rgb(249, 247, 220);
     
 }
@@ -597,7 +597,7 @@ nav ul li a:hover{
     color:#aaa;
 }
 .stars{
-    color: #f4b400;   /* gold */
+    color: #f4b400;   
     font-size: 16px;
     display: flex;
     gap: 3px;
@@ -871,15 +871,15 @@ nav ul li a:hover{
         display:block;
     }
     .mobile-btn{
-        display:flex;              /* 👈 make it flex */
-        justify-content:center;    /* 👈 center horizontally */
+        display:flex;              /*  make it flex */
+        justify-content:center;    /*  center horizontally */
         margin-top:20px;
         width:100%;
     }
 
     .mobile-btn a{
-        background:white;          /* 👈 white button */
-        color:black;               /* 👈 black text */
+        background:white;          /*  white button */
+        color:black;               /*  black text */
         padding:10px 25px;
         border-radius:5px;
         text-decoration:none;
@@ -928,7 +928,7 @@ nav ul li a:hover{
 
 /* CARD SIZE (NARROW + CENTERED) */
 .product-card{
-    flex: 0 0 100%;        /* 👈 reduce width */
+    flex: 0 0 100%;        /*  reduce width */
     max-width: 100%;
    
 }
@@ -1129,8 +1129,8 @@ nav ul li a:hover{
   text-align: center;
 }
 .cart-footer .btn {
-    background: #ffffff;   /* ✅ white button */
-    color: #000000;        /* ✅ black text */
+    background: #ffffff;   
+    color: #000000;        
     border: 1px solid #000; /* optional nice border */
     
     padding: 10px 20px;
@@ -1140,7 +1140,7 @@ nav ul li a:hover{
   .cart-img {
     width: 60px;        /* fixed width */
     height: 60px;       /* fixed height */
-    object-fit: cover;  /* ✅ keeps image ratio */
+    object-fit: cover;  
     border-radius: 8px;
   }
   /* ===== LOOKBOOK HERO ===== */
