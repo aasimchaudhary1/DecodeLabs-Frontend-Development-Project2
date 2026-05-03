@@ -1,1 +1,1 @@
-# synent-task2-responsivelandingpage-javariaasif
+# synent-task2-responsivelandingpage
