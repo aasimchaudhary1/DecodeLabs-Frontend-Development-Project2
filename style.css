@@ -429,7 +429,7 @@ nav ul li a:hover{
 }
 .review-slider{
     overflow:hidden;
-    max-width:1000px;
+    width:100%;
     padding: 0 10px;
     margin: auto;
 }
@@ -443,16 +443,14 @@ nav ul li a:hover{
 }
 
 /* CARD */
-.review-card{
-    flex:0 0 calc((100% - 20px)/2);
-    
-    background:white;
-    padding:20px;
-    border-radius:12px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.1);
-    text-align:left;
-}
 
+.review-card{
+    flex:0 0 calc(50% - 10px);
+    background:#fff;
+    border-radius:20px;
+    padding:30px;
+    box-sizing:border-box;
+}
 /* TOP SECTION */
 .review-top{
     display:flex;
@@ -1016,7 +1014,13 @@ nav ul li a:hover{
        
     }
 }
+@media(max-width:768px){
 
+    .review-card{
+        flex:0 0 100%;
+    }
+
+}
 /* ===== CART SIDEBAR ===== */
 #cart-sidebar {
   position: fixed;
