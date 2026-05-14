@@ -276,27 +276,7 @@ nav ul li a:hover{
 }
 
 
-.prev, .next{
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    background:transparent;
-  
-    
-    border:none;
-    cursor:pointer;
-    border-radius:20%;
-    z-index:10;
-   
-  /* 🔥 key for thin look */
 
-    color: rgba(0,0,0,0.5);  /* soft opacity */
-    
-}
-
-/* default (desktop) */
-.prev{ left:-25px;  }
-.next{ right:-25px;  }
 
 
 
@@ -941,8 +921,7 @@ nav ul li a:hover{
 
 }
 
-    .prev{ left:-20px; font-size:58px;}
-    .next{ right:-20px; font-size:58px;}
+   
 
     .about-container{
         flex-direction:column;
@@ -992,14 +971,7 @@ nav ul li a:hover{
         max-width: 100%;
         
     }
-    .prev{ left:5px; }
-    .next{ right:5px; }
-
-    .prev, .next{
-        width:35px;
-        height:35px;
-        font-size:58px;
-    }
+  
     
    
 }
@@ -1011,8 +983,7 @@ nav ul li a:hover{
         flex: 0 0 calc((100% - 40px)/3);
         max-width: calc((100% - 40px)/3);
     }
-    .prev{ left:5px; font-size:58px;}
-    .next{ right:5px; font-size:58px;}
+
     
 
     .review-card{
@@ -1021,8 +992,7 @@ nav ul li a:hover{
 }
 @media (min-width:600px){
    
-    .prev{ left:-25px; font-size:58px;}
-    .next{ right:-25px; font-size:58px;}
+   
     
 
 }
@@ -1033,8 +1003,7 @@ nav ul li a:hover{
         max-width: calc((100% - 60px)/4);
        
     }
-    .prev{ left:-30px; font-size:58px; }
-    .next{ right:-30px; font-size:58px;}
+   
 }
 
 
@@ -1180,3 +1149,30 @@ nav ul li a:hover{
   .lookbook-grid img:hover{
     transform: scale(1.05);
   }
+
+  .slider-dots{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-top:25px;
+}
+
+.dot{
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:#bbb;
+    cursor:pointer;
+    transition:0.3s;
+}
+.dot.active{
+    background:black;
+}
+/* HIDE DOTS ON MOBILE */
+@media(max-width:600px){
+
+    .slider-dots{
+        display:none;
+    }
+
+}

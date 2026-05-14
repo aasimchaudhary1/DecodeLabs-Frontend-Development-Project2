@@ -132,59 +132,173 @@ if (checkoutBtn) {
 }
 
 
-/* ================= FEATURE PRODUCT SLIDER ================= */
-const track = document.getElementById("track");
-const nextBtn = document.querySelector(".next");
-const prevBtn = document.querySelector(".prev");
 
-if (track && nextBtn && prevBtn) {
+const track = document.getElementById("track");
+const dotsContainer = document.querySelector(".slider-dots");
+
+if (track && dotsContainer) {
 
   let index = 0;
-  const cards = document.querySelectorAll(".product-card");
 
+  const cards =
+    document.querySelectorAll(".product-card");
+
+  // RESPONSIVE CARDS
   function getVisible() {
+
     if (window.innerWidth < 600) return 1;
     if (window.innerWidth < 900) return 2;
     if (window.innerWidth < 1200) return 3;
+
     return 4;
   }
 
+  // CARD WIDTH
   function getCardWidth() {
-    const card = cards[0];
-    return card.offsetWidth + 20;
+
+    return cards[0].offsetWidth + 20;
+
   }
 
+  // CREATE DOTS
+  function createDots() {
+
+    dotsContainer.innerHTML = "";
+
+    // HIDE DOTS ON MOBILE
+    if(window.innerWidth < 600) return;
+
+    cards.forEach((_, i) => {
+
+      const dot =
+        document.createElement("span");
+
+      dot.classList.add("dot");
+
+      if(i === 0){
+        dot.classList.add("active");
+      }
+
+      dot.addEventListener("click", () => {
+
+        index = i;
+
+        updateSlider();
+
+      });
+
+      dotsContainer.appendChild(dot);
+
+    });
+
+  }
+
+  // UPDATE SLIDER
   function updateSlider() {
+
     const visible = getVisible();
-    const maxIndex = Math.max(cards.length - visible, 0);
 
-    if (index > maxIndex) index = maxIndex;
+    const maxIndex =
+      cards.length - visible;
 
-    track.style.transform = `translateX(-${index * getCardWidth()}px)`;
+    if(index > maxIndex){
+      index = maxIndex;
+    }
 
-    nextBtn.style.display = index >= maxIndex ? "none" : "block";
-    prevBtn.style.display = index <= 0 ? "none" : "block";
+    if(index < 0){
+      index = 0;
+    }
+
+    track.style.transform =
+      `translateX(-${index * getCardWidth()}px)`;
+
+    const dots =
+      document.querySelectorAll(".dot");
+
+    dots.forEach(dot =>
+      dot.classList.remove("active")
+    );
+
+    if(dots[index]){
+      dots[index].classList.add("active");
+    }
+
   }
 
-  nextBtn.onclick = () => {
-    index++;
-    updateSlider();
-  };
+  // TOUCH SWIPE
+  let startX = 0;
+  let endX = 0;
 
-  prevBtn.onclick = () => {
-    index--;
-    if (index < 0) index = 0;
-    updateSlider();
-  };
+  track.addEventListener("touchstart", (e) => {
 
-  window.addEventListener("resize", () => {
-    index = 0;
-    updateSlider();
+      startX = e.touches[0].clientX;
+
   });
 
-  window.addEventListener("load", updateSlider);
-}
+  track.addEventListener("touchend", (e) => {
 
+      endX = e.changedTouches[0].clientX;
+
+      handleSwipe();
+
+  });
+
+  function handleSwipe(){
+
+      const visible = getVisible();
+
+      const maxIndex =
+        cards.length - visible;
+
+      // SWIPE LEFT
+      if(startX - endX > 50){
+
+          index++;
+
+          if(index > maxIndex){
+              index = maxIndex;
+          }
+
+          updateSlider();
+
+      }
+
+      // SWIPE RIGHT
+      else if(endX - startX > 50){
+
+          index--;
+
+          if(index < 0){
+              index = 0;
+          }
+
+          updateSlider();
+
+      }
+
+  }
+
+  // RESIZE
+  window.addEventListener("resize", () => {
+
+    index = 0;
+
+    createDots();
+
+    updateSlider();
+
+  });
+
+  // LOAD
+  window.addEventListener("load", () => {
+
+    createDots();
+
+    updateSlider();
+
+  });
+
+}
 
 /* ================= REVIEW SLIDER ================= */
 const reviewTrack = document.getElementById("reviewTrack");
