@@ -7,7 +7,7 @@ The project demonstrates responsive design principles, modern CSS layout techniq
 
 ---
 
-## Live Demo
+## Live Preview
 https://aasimchaudhary1.github.io/DecodeLabs-Frontend-Development-Project2/
 
 
